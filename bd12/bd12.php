@@ -1,17 +1,11 @@
 <form>
-Nazwa: <input type="text" name="name" value="<?php if(isset($_GET["name"])) echo $_GET["name"];?>">
+Nazwa: <input type="text" name="name">
 <br>
 Hasło: <input type="text" name="password">
 <input type="submit" value="submit">
 </form>
 
 <?php
-    function write($result){
-        echo mysqli_error();
-        while($row = mysqli_fetch_array($result)) {
-            write($row);
-        }
-    }
 
     if(!isset($_GET["name"])){
         exit(0);
@@ -42,7 +36,6 @@ Hasło: <input type="text" name="password">
 
     $query = 'LOAD DATA LOCAL INFILE "osoby.txt" INTO TABLE `osoby` CHARACTER SET utf8 COLUMNS TERMINATED BY ";" IGNORE 1 LINES';
 
-
     $tf = $conn->query($drop);
 
     $r = $conn->query($q);
@@ -50,32 +43,40 @@ Hasło: <input type="text" name="password">
     $re = $conn->query($query);
 
     $szczecin = 'SELECT COUNT(`pesel`) FROM `osoby` WHERE `osoby`.`miasto`="Szczecin";';
+    
+    $result = $conn->query($szczecin);
 
-    write($conn->query($szczecin));
+    while($row = $result->fetch_assoc()) {
+        print_r($row);
+    }
     echo "<br>";
 
-    $winner = 'Select nazwisko, imie, Case When czas1 < czas2 And czas1 < czas3 Then czas1 When czas2 < czas3 Then czas2 Else czas3 End As Mini From `osoby` ORDER BY Mini LIMIT  1;';
+    $winner = "Select nazwisko, imie, Case When czas1 < czas2 And czas1 < czas3 Then czas1 When czas2 < czas3 Then czas2 Else czas3 End As czas From `osoby` ORDER BY czas LIMIT  1;";
 
-    write($conn->query($winner));
+    $result = $conn->query($winner);
+
+    while($row = $result->fetch_assoc()) {
+        echo "<br>";
+        print_r($row);
+    }
     echo "<br>";
 
     $avg = 'Select nazwisko, imie, (czas1+czas2+czas3)/3 As srednia From `osoby`;';
 
-    write($conn->query($avg));
+    $result = $conn->query($avg);
+
+    while($row = $result->fetch_assoc()) {
+        echo "<br>";
+        print_r($row);
+    }
     echo "<br>";
-    
+
     $sredn = 'Select nazwisko, imie, AVG(czas1), AVG(czas2), AVG(czas3) From `osoby`;';
 
-    write($conn->query($sredn));
-    echo "<br>";
+    $result = $conn->query($sredn);
 
-
-    echo $winner;
-    echo "<br>";
-    echo $avg;
-    echo "<br>";
-    echo $sredn;
-    echo "<br>";
-    echo $szczecin;
-    echo "<br>";
+    while($row = $result->fetch_assoc()) {
+        echo "<br>";
+        print_r($row);
+    }
 ?>
