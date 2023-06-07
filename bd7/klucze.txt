@@ -1,0 +1,4 @@
+ALTER TABLE `panstwa`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `stolice`
+  ADD PRIMARY KEY (`id`);

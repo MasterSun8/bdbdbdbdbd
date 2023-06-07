@@ -1,0 +1,17 @@
+:root{
+    --fontsize: 1;
+    --invert: 0;
+}
+
+
+body{
+    font-size: calc(var(--fontsize) * 16px);
+}
+
+.dark{
+    filter: invert(var(--invert));
+}
+
+.light{
+    filter: invert(var(--invert));
+}

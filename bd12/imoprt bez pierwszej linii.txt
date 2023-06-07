@@ -1,0 +1,7 @@
+mysqli_options($conn, MYSQLI_OPT_LOCAL_INFILE, true);
+
+LOAD DATA LOCAL INFILE "osoby.txt" 
+                    INTO TABLE osoby 
+                    CHARACTER SET utf8 
+                    COLUMNS TERMINATED BY ";" 
+                    IGNORE 1 LINES

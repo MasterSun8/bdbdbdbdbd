@@ -1,0 +1,28 @@
+img {
+    width: 1024px;
+    height: 576px;
+}
+
+.menu {
+    background-color: yellow;
+    width: 1024px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+a {
+    color: red;
+    font-size: 24px;
+}
+
+.tresc {
+    background-color: greenyellow;
+    width: 1024px;;
+    height: 500px;
+}
+
+.tekst {
+    text-align: center;
+}

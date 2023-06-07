@@ -1,0 +1,41 @@
+body{
+    background-color: olive;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.baner{
+    width: 1200px;
+    height: 100px;
+    background-image: url("g.gif");
+}
+
+.tresc{
+    width: 800px;
+    height: 600px;
+    background-color: cyan;
+}
+
+.menu{
+    width: 400px;
+    height: 600px;
+    background-color: royalblue;
+    overflow-y: scroll;
+}
+
+a{
+    color: yellow;
+    font-weight: bold;
+}
+
+.stopka{
+    width: 1200px;
+    height: 60px;
+    background-color: maroon;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

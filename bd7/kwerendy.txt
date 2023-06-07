@@ -1,0 +1,11 @@
+CREATE VIEW widoka AS SELECT `stolica`, `ludnosc`, `powierzchnia` FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id` WHERE `panstwo`="polska";
+CREATE VIEW widokb AS SELECT COUNT(`powierzchnia`) FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id` WHERE `panstwo` LIKE 'p%';
+CREATE VIEW widokc AS SELECT SUM(`powierzchnia`) FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id`;
+CREATE VIEW widokd AS SELECT SUM(`powierzchnia`) FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id` WHERE `panstwo` NOT LIKE 'Rosja';
+CREATE VIEW widoke AS SELECT SUM(`ludnosc`) FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id`;
+CREATE VIEW widokf AS SELECT AVG(`powierzchnia`) FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id`;
+CREATE VIEW widokg AS SELECT AVG(`ludnosc`) FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id`;
+CREATE VIEW widokh AS SELECT `ludnosc`/`powierzchnia`*100 FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id`;
+CREATE VIEW widoki AS SELECT `powierzchnia`, `panstwo`, `ludnosc` FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id` ORDER BY `powierzchnia` DESC LIMIT 1;
+CREATE VIEW widokj AS SELECT `powierzchnia`, `panstwo`, `ludnosc` FROM `panstwa` JOIN `stolice` ON `stolice`.`id_panstwa` = `panstwa`.`id` ORDER BY `powierzchnia` LIMIT 1;
+CREATE VIEW widokk AS SELECT (SELECT COUNT(`panstwa`.`powierzchnia`) FROM `panstwa` JOIN (SELECT * FROM `panstwa` WHERE `panstwo`='Polska') as `pl` ON `panstwa`.`powierzchnia` > `pl`.`powierzchnia`) AS 'większe', (SELECT COUNT(`panstwa`.`powierzchnia`) FROM `panstwa` JOIN (SELECT * FROM `panstwa` WHERE `panstwo`='Polska') as `pl` ON `panstwa`.`powierzchnia` < `pl`.`powierzchnia`) AS 'mniejsze' FROM `panstwa` LIMIT 1;
